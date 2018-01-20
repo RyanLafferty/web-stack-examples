@@ -40,6 +40,7 @@ manager.create_api(Product, methods=['POST'])
 def hello_world():
     return 'Hello Flask'
 
+
 @app.route('/api/products', methods=['GET'])
 def get_products():
     query_set = Product.query.all()
@@ -56,6 +57,7 @@ def datetime_handler(x):
         return x.isoformat()
     else:
         raise TypeError("Unknown type, given type = " + str(type(x)))
+
 
 def create_json_response(query_set):
     rows = []
