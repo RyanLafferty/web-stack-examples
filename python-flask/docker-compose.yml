@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  db:
+    image: flask_db
+    container_name: flask_db
+    build: 
+      context: .
+      dockerfile: ./config/db/dev/Dockerfile
+    ports:
+      - "3306:3306"
+    environment:
+      DATABASE_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: inventory
+  app:
+    image: flask_app
+    container_name: flask_app
+    build:
+      context: .
+      dockerfile: config/app/dev/Dockerfile
+    ports:
+      - "8080:8080"
+    env_file:
+      - config/env/dev.env
+    volumes:
+      - ./app:/app
+    depends_on:
+      - db
+    links:
+      - db
+    stdin_open: true
+    tty: true
+    restart: always
