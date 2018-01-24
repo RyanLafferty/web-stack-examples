@@ -24,6 +24,7 @@ from product.models import Product
 # Set up corresponding RESTful API
 # ==========================================================================================
 
+
 # Create the database tables.
 db.create_all()
 
@@ -33,6 +34,7 @@ manager = flask_restless.APIManager(app, flask_sqlalchemy_db=db)
 # Create API endpoints, which will be available at /api/<tablename> by
 # default. Allowed HTTP methods can be specified as well.
 manager.create_api(Product, methods=['POST'])
+
 
 # ==========================================================================================
 
@@ -50,11 +52,13 @@ def get_products():
     query_set = Product.query.all()
     return create_json_response(query_set)
 
+
 # ==========================================================================================
 
 
 # JSON handlers
 # ==========================================================================================
+
 
 def datetime_handler(x):
     if isinstance(x, datetime):
@@ -77,7 +81,9 @@ def create_json_response(query_set):
 
     return response
 
+
 # ==========================================================================================
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=8080)
