@@ -39,6 +39,7 @@ manager.create_api(Product, methods=['POST'])
 # Other routes
 # ==========================================================================================
 
+
 @app.route('/')
 def hello_world():
     return 'Hello Flask'
