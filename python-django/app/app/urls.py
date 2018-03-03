@@ -16,15 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
-# from app.hello.views import hello_django
-# from app.product.views import get_product_list
 from rest_framework.urlpatterns import format_suffix_patterns
+
+from app.product.views import ProductList
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('hello', hello_django),
-    # path('products/all', get_product_list),
+    url(r'^product/all/$', ProductList.as_view()),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
