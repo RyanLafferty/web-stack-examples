@@ -1,0 +1,49 @@
+version: "3"
+
+services:
+  nginx:
+    image: django_nginx
+    container_name: django_nginx
+    ports:
+      - "8080:8080"
+    build:
+      context: .
+      dockerfile: ./config/nginx/dev/Dockerfile
+    stdin_open: true
+    tty: true
+    volumes:
+      - sharedvolume:/django-nginx-app/
+  db:
+    image: django_nginx_db
+    container_name: django_nginx_db
+    build:
+      context: .
+      dockerfile: ./config/db/dev/Dockerfile
+    volumes:
+      - ./init_db:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    environment:
+      DATABASE_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: inventory
+  app:
+    image: django_nginx_app
+    container_name: django_nginx_app
+    restart: always
+    env_file:
+      - ./config/env/dev.env
+    build:
+      context: .
+      dockerfile: ./config/app/dev/Dockerfile
+    stdin_open: true
+    tty: true
+    depends_on:
+      - nginx
+      - db
+    volumes:
+      - sharedvolume:/django-nginx-app/
+      - ./app:/app
+
+volumes:
+  sharedvolume: {}
