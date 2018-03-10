@@ -44,3 +44,18 @@ flask-ssh:
 flask-build:
 	$(DOCKER_COMPOSE_COMMAND) $(PYTHON_FLASK_DOCKER_COMPOSE) build
 flask-reup: flask-build flask-up
+
+# python django
+.PHONY: django-up django-start django-stop django-ssh django-build django-reup
+
+django-up:
+	$(DOCKER_COMPOSE_COMMAND) $(PYTHON_DJANGO_DOCKER_COMPOSE) up
+django-start:
+	$(DOCKER_COMPOSE_COMMAND) $(PYTHON_DJANGO_DOCKER_COMPOSE) start
+django-stop:
+	$(DOCKER_COMPOSE_COMMAND) $(PYTHON_DJANGO_DOCKER_COMPOSE) stop
+django-ssh:
+	$(DOCKER_COMMAND) exec -it $(PYTHON_DJANGO_APP_CONTAINER) /bin/bash
+django-build:
+	$(DOCKER_COMPOSE_COMMAND) $(PYTHON_DJANGO_DOCKER_COMPOSE) build
+django-reup: django-build django-up
