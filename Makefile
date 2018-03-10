@@ -59,3 +59,18 @@ django-ssh:
 django-build:
 	$(DOCKER_COMPOSE_COMMAND) $(PYTHON_DJANGO_DOCKER_COMPOSE) build
 django-reup: django-build django-up
+
+# python django whiskey
+.PHONY: whiskey-django-up whiskey-django-start whiskey-django-stop whiskey-django-ssh whiskey-django-build whiskey-django-reup
+
+whiskey-django-up:
+	$(DOCKER_COMPOSE_COMMAND) $(PYTHON_DJANGO_WHISKEY_DOCKER_COMPOSE) up
+whiskey-django-start:
+	$(DOCKER_COMPOSE_COMMAND) $(PYTHON_DJANGO_WHISKEY_DOCKER_COMPOSE) start
+whiskey-django-stop:
+	$(DOCKER_COMPOSE_COMMAND) $(PYTHON_DJANGO_WHISKEY_DOCKER_COMPOSE) stop
+whiskey-django-ssh:
+	$(DOCKER_COMMAND) exec -it $(PYTHON_DJANGO_WHISKEY_APP_CONTAINER) /bin/bash
+whiskey-django-build:
+	$(DOCKER_COMPOSE_COMMAND) $(PYTHON_DJANGO_WHISKEY_DOCKER_COMPOSE) build
+whiskey-django-reup: whiskey-django-build whiskey-django-up
