@@ -31,7 +31,7 @@ hooks:
 	cp hooks/* .git/hooks/
 
 # python flask
-.PHONY:
+.PHONY: flask-up flask-start flask-stop flask-ssh flask-build flask-reup
 
 flask-up:
 	$(DOCKER_COMPOSE_COMMAND) $(PYTHON_FLASK_DOCKER_COMPOSE) up
