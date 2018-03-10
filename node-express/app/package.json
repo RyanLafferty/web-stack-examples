@@ -1,0 +1,13 @@
+{
+    "name": "node-express-app",
+    "version": "0.0.1",
+    "private": true,
+    "main": "app.js",
+    "dependencies": {
+      "express": "^4.16.2"
+    },
+    "scripts": {
+      "start": "node app.js"
+    }
+  }
+  
