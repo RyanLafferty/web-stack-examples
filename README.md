@@ -106,3 +106,46 @@ make django-build
 ```Bash
 localhost:8080
 ```
+
+## Python Whiskey Django
+
+### Starting The Server
+
+```Bash
+make whiskey-django-up
+```
+
+### Rebuilding The Docker Container
+
+```Bash
+make whiskey-django-build && make whiskey-django-up
+
+OR
+
+make whiskey-django-reup
+```
+
+### Python Whiskey Django Commands
+
+```Bash
+# Builds, (re)creates, starts, and attaches to containers for the Python Whiskey Django Stack.
+make whiskey-django-up
+
+# Starts an already built Python Whiskey Django Stack
+make whiskey-django-start
+
+# Stops the Python Whiskey Django Stack
+make whiskey-django-stop
+
+# SSH into the local Python Whiskey Django App container
+make whiskey-django-ssh
+
+# Builds the Python Whiskey Django Stack
+make whiskey-django-build
+```
+
+### Accessing The Local Python Whiskey Django Server
+
+```Bash
+localhost:8080
+```
