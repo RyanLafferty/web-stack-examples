@@ -94,7 +94,7 @@ make django-start
 # Stops the Python Django Stack
 make django-stop
 
-# SSH into the local Python FlaDjangosk App container
+# SSH into the local Python Django App container
 make django-ssh
 
 # Builds the Python Django Stack
