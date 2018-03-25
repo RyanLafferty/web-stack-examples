@@ -25,10 +25,12 @@ NODE_EXPRESS_DB_CONTAINER := node_db
 PYTHON_DJANGO_WHISKEY_NGINX_CONTAINER := django_nginx
 
 # Environment
-.PHONY: hooks
+.PHONY: hooks clean
 
 hooks:
 	cp hooks/* .git/hooks/
+clean:
+	sh scripts/docker-cleanup.sh
 
 # python flask
 .PHONY: flask-up flask-start flask-stop flask-ssh flask-build flask-reup
