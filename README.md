@@ -107,6 +107,7 @@ make django-build
 localhost:8080
 ```
 
+
 ## Python Whiskey Django
 
 ### Starting The Server
@@ -145,6 +146,57 @@ make whiskey-django-build
 ```
 
 ### Accessing The Local Python Whiskey Django Server
+
+```Bash
+localhost:8080
+```
+
+
+## Node Express
+
+### Environment Setup
+```Bash
+# Installs the required dependencies (must be in the app directory containing the package.json)
+# The container uses a volume mount on the app directory so we must install the dependencies prior to creating the container.
+npm install
+```
+
+### Starting The Server
+
+```Bash
+make node-express-up
+```
+
+### Rebuilding The Docker Container
+
+```Bash
+make node-express-build && make node-express-up
+
+OR
+
+make node-express-reup
+```
+
+### Node Express Commands
+
+```Bash
+# Builds, (re)creates, starts, and attaches to containers for the Node Express Stack.
+make node-express-up
+
+# Starts an already built Node Express Stack
+make node-express-start
+
+# Stops the Node Express Stack
+make node-express-stop
+
+# SSH into the local Node Express App container
+make node-express-ssh
+
+# Builds the Node Express Stack
+make node-express-build
+```
+
+### Accessing The Local Node Express Server
 
 ```Bash
 localhost:8080
