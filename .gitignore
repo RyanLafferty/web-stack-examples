@@ -45,11 +45,14 @@ target/
 .ropeproject
 *.swp
 
-#intelliJ IDEs
+# intelliJ IDEs
 .idea
 
-#visual studio code
+# visual studio code
 .vscode
 
-#sql dumps
+# sql dumps
 *.sql
+
+# Node Modules
+node_modules

@@ -8,18 +8,19 @@ DOCKER_SWARM_COMMAND := docker swarm
 PYTHON_FLASK_DOCKER_COMPOSE := -f python-flask/docker-compose.yml
 PYTHON_DJANGO_DOCKER_COMPOSE := -f python-django/docker-compose.yml
 PYTHON_DJANGO_WHISKEY_DOCKER_COMPOSE := -f python-django-uwsgi-nginx/docker-compose.yml
+NODE_EXPRESS_DOCKER_COMPOSE := -f node-express/docker-compose.yml
 
 # app containers
 PYTHON_FLASK_APP_CONTAINER := flask_app
 PYTHON_DJANGO_APP_CONTAINER := django_app
 PYTHON_DJANGO_WHISKEY_APP_CONTAINER := django_nginx_app
-NODE_EXPRESS_APP_CONTAINER := node_app
+NODE_EXPRESS_APP_CONTAINER := express_app
 
 # db containers
 PYTHON_FLASK_DB_CONTAINER := flask_db
 PYTHON_DJANGO_DB_CONTAINER := django_db
 PYTHON_DJANGO_WHISKEY_DB_CONTAINER := django_nginx_db
-NODE_EXPRESS_DB_CONTAINER := node_db
+NODE_EXPRESS_DB_CONTAINER := express_db
 
 # nginx containers
 PYTHON_DJANGO_WHISKEY_NGINX_CONTAINER := django_nginx
@@ -76,3 +77,18 @@ whiskey-django-ssh:
 whiskey-django-build:
 	$(DOCKER_COMPOSE_COMMAND) $(PYTHON_DJANGO_WHISKEY_DOCKER_COMPOSE) build
 whiskey-django-reup: whiskey-django-build whiskey-django-up
+
+# python django whiskey
+.PHONY: node-express-up node-express-start node-express-stop node-express-ssh node-express-build node-express-reup
+
+node-express-up:
+	$(DOCKER_COMPOSE_COMMAND) $(NODE_EXPRESS_DOCKER_COMPOSE) up
+node-express-start:
+	$(DOCKER_COMPOSE_COMMAND) $(NODE_EXPRESS_DOCKER_COMPOSE) start
+node-express-stop:
+	$(DOCKER_COMPOSE_COMMAND) $(NODE_EXPRESS_DOCKER_COMPOSE) stop
+node-express-ssh:
+	$(DOCKER_COMMAND) exec -it $(NODE_EXPRESS_APP_CONTAINER) /bin/bash
+node-express-build:
+	$(DOCKER_COMPOSE_COMMAND) $(NODE_EXPRESS_DOCKER_COMPOSE) build
+node-express-reup: node-express-build node-express-up
